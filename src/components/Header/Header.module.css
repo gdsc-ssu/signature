@@ -10,6 +10,8 @@
 
   font-size: 1.5rem;
   padding: 1.5rem 2rem;
+
+  z-index: 100;
 }
 
 .logo {
@@ -38,11 +40,11 @@
   border-radius: 50%;
 
   background-color: #121214;
-  z-index: 9;
+  z-index: 1;
 }
 
 .icon-link {
   cursor: pointer;
   font-size: 2.25rem;
-  z-index: 10;
+  z-index: 2;
 }
