@@ -12,7 +12,9 @@ export const Header = () => {
       </div>
 
       <IconWrapper>
-        <FaGithub />
+        <a href="https://github.com/gdsc-ssu/signature" target="_blank" rel="noopener noreferrer">
+          <FaGithub />
+        </a>
       </IconWrapper>
     </header>
   )
