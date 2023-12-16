@@ -18,15 +18,34 @@ const Dot = () => {
 }
 
 export const Footer = () => {
+  const makerNames = ['itjustbong', 'Hanna922', 'fecapark']
+
+  const getShuffledMakerNames = () => {
+    return makerNames.sort(() => Math.random() - 0.5)
+  }
+
+  const getShuffledNameLinks = () => {
+    const makerNames = getShuffledMakerNames()
+    const lastMakerName = makerNames[makerNames.length - 1]
+    const nameLinks = makerNames.slice(0, -1).map((makerName) => {
+      return (
+        <>
+          <NameLink href={`https://github.com/${makerName}`}>{makerName}</NameLink>
+          <Dot />
+        </>
+      )
+    })
+    nameLinks.push(
+      <NameLink href={`https://github.com/${lastMakerName}`}>{lastMakerName}</NameLink>
+    )
+    return nameLinks
+  }
+
   return (
     <footer className={styles.footer}>
       <div className={styles.madeby}>
         <span>Made by</span>
-        <NameLink href="https://github.com/itjustbong">itjustbong</NameLink>
-        <Dot />
-        <NameLink href="https://github.com/Hanna922">Hanna922</NameLink>
-        <Dot />
-        <NameLink href="https://github.com/fecapark">fecapark</NameLink>
+        {...getShuffledNameLinks()}
       </div>
     </footer>
   )
