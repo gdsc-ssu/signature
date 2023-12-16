@@ -8,7 +8,7 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <span>signature .</span>
+        <span>signature</span>
       </div>
 
       <IconWrapper>
