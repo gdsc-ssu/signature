@@ -7,12 +7,17 @@ import styles from './Header.module.css'
 export const Header = () => {
   return (
     <header className={styles.header}>
-      <div>
-        <span>signature</span>
+      <div className={styles.logo}>
+        <span>signature .</span>
       </div>
 
       <IconWrapper>
-        <a href="https://github.com/gdsc-ssu/signature" target="_blank" rel="noopener noreferrer">
+        <a
+          className={styles['icon-link']}
+          href="https://github.com/gdsc-ssu/signature"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FaGithub />
         </a>
       </IconWrapper>
