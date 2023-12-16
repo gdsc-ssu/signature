@@ -1,3 +1,5 @@
+import { FaGithub } from 'react-icons/fa'
+
 import { IconWrapper } from '../IconWrapper/IconWrapper'
 
 import styles from './Header.module.css'
@@ -9,7 +11,9 @@ export const Header = () => {
         <span>signature</span>
       </div>
 
-      <IconWrapper>github</IconWrapper>
+      <IconWrapper>
+        <FaGithub />
+      </IconWrapper>
     </header>
   )
 }
