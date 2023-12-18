@@ -9,71 +9,59 @@ export interface Mouse {
   radius: number
 }
 
-export class Visual {
-  text: Text
-  texture: PIXI.Texture
-
-  mouse: Mouse
-
-  container!: PIXI.ParticleContainer
-
-  particles: Particle[]
-  pos!: ParticlePos[]
-
-  constructor() {
-    this.text = new Text()
-
-    this.texture = PIXI.Texture.from('particle.png')
-
-    this.particles = []
-
-    this.mouse = {
-      x: 0,
-      y: 0,
-      radius: 100,
-    }
-
-    document.addEventListener('pointermove', this.onMove.bind(this), false)
+export const Visual = () => {
+  const { setText } = Text()
+  const texture = PIXI.Texture.from('particle.png')
+  const mouse = {
+    x: 0,
+    y: 0,
+    radius: 100,
   }
 
-  show(stageWidth: number, stageHeight: number, stage: PIXI.Container) {
-    if (this.container) {
-      stage.removeChild(this.container)
+  let container!: PIXI.ParticleContainer
+
+  let particles: Particle[] = []
+  let pos!: ParticlePos[]
+
+  const show = (stageWidth: number, stageHeight: number, stage: PIXI.Container) => {
+    if (container) {
+      stage.removeChild(container)
     }
 
-    this.pos = this.text.setText('a', 2, stageWidth, stageHeight)
+    pos = setText('a', 2, stageWidth, stageHeight)
 
-    this.container = new PIXI.ParticleContainer(this.pos.length, {
+    container = new PIXI.ParticleContainer(pos.length, {
       vertices: false,
       position: true,
       rotation: false,
       uvs: false,
       tint: false,
     })
-    stage.addChild(this.container)
 
-    this.particles = []
-    for (let i = 0; i < this.pos.length; i++) {
-      const item = new Particle(this.pos[i], this.texture)
-      this.container.addChild(item.sprite)
-      this.particles.push(item)
+    stage.addChild(container)
+
+    particles = []
+    for (let i = 0; i < pos.length; i++) {
+      const item = new Particle(pos[i], texture)
+      container.addChild(item.sprite)
+      particles.push(item)
     }
   }
 
-  animate() {
-    for (let i = 0; i < this.particles.length; i++) {
-      const item = this.particles[i]
-      const dx = this.mouse.x - item.x
-      const dy = this.mouse.y - item.y
+  const animate = () => {
+    for (let i = 0; i < particles.length; i++) {
+      const item = particles[i]
+      const dx = mouse.x - item.x
+      const dy = mouse.y - item.y
       const dist = Math.sqrt(dx * dx + dy * dy)
-      const minDist = item.radius + this.mouse.radius
+      const minDist = item.radius + mouse.radius
 
       if (dist < minDist) {
         const angle = Math.atan2(dy, dx)
         const tx = item.x + Math.cos(angle) * minDist
         const ty = item.y + Math.sin(angle) * minDist
-        const ax = tx - this.mouse.x
-        const ay = ty - this.mouse.y
+        const ax = tx - mouse.x
+        const ay = ty - mouse.y
         item.vx -= ax
         item.vy -= ay
       }
@@ -82,8 +70,15 @@ export class Visual {
     }
   }
 
-  onMove(e: PointerEvent) {
-    this.mouse.x = e.clientX
-    this.mouse.y = e.clientY
+  const onMove = (e: PointerEvent) => {
+    mouse.x = e.clientX
+    mouse.y = e.clientY
+  }
+
+  document.addEventListener('pointermove', onMove.bind(this), false)
+
+  return {
+    show,
+    animate,
   }
 }

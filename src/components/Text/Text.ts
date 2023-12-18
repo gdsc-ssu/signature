@@ -6,37 +6,27 @@ export interface ParticlePos {
   vy: number
 }
 
-export class Text {
-  canvas!: HTMLCanvasElement
-  ctx!: CanvasRenderingContext2D
+export const Text = () => {
+  const canvas = document.createElement('canvas')
+  const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
 
-  constructor() {
-    this.init()
-  }
-
-  init() {
-    this.canvas = document.createElement('canvas')
-
-    this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D
-  }
-
-  setText(str: string, density: number, stageWidth: number, stageHeight: number) {
-    this.canvas.width = stageWidth
-    this.canvas.height = stageHeight
+  const setText = (str: string, density: number, stageWidth: number, stageHeight: number) => {
+    canvas.width = stageWidth
+    canvas.height = stageHeight
 
     const myText = str
     const fontWidth = 300
     const fontSize = 500
     const fontName = 'Hind'
 
-    this.ctx.clearRect(0, 0, stageWidth, stageHeight)
-    this.ctx.font = `${fontWidth} ${fontSize}px ${fontName}`
-    this.ctx.fillStyle = `rgba(0, 0, 0, 0.3)`
-    this.ctx.textBaseline = `middle`
+    ctx.clearRect(0, 0, stageWidth, stageHeight)
+    ctx.font = `${fontWidth} ${fontSize}px ${fontName}`
+    ctx.fillStyle = `rgba(0, 0, 0, 0.3)`
+    ctx.textBaseline = `middle`
 
-    const fontPos = this.ctx.measureText(myText)
+    const fontPos = ctx.measureText(myText)
 
-    this.ctx.fillText(
+    ctx.fillText(
       myText,
       (stageWidth - fontPos.width) / 2,
       fontPos.actualBoundingBoxAscent +
@@ -44,11 +34,11 @@ export class Text {
         (stageHeight - fontSize) / 2
     )
 
-    return this.dotPos(density, stageWidth, stageHeight)
+    return dotPos(density, stageWidth, stageHeight)
   }
 
-  dotPos(density: number, stageWidth: number, stageHeight: number) {
-    const imageData = this.ctx.getImageData(0, 0, stageWidth, stageHeight).data
+  const dotPos = (density: number, stageWidth: number, stageHeight: number) => {
+    const imageData = ctx.getImageData(0, 0, stageWidth, stageHeight).data
 
     const particles: ParticlePos[] = []
     let i = 0
@@ -77,6 +67,9 @@ export class Text {
         }
       }
     }
+
     return particles
   }
+
+  return { setText }
 }

@@ -1,38 +1,19 @@
-import React from 'react'
-
 import * as PIXI from 'pixi.js'
 
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header/Header'
 import { Visual } from '@/components/Visual/Visual'
 
-export default class App extends React.Component {
-  renderer!: PIXI.Renderer
-  stage!: PIXI.Container
-  visual!: Visual
+export const App = () => {
+  let renderer!: PIXI.Renderer
+  let stage!: PIXI.Container
+  const { show, animate } = Visual()
 
-  stageWidth!: number
-  stageHeight!: number
+  let stageWidth!: number
+  let stageHeight!: number
 
-  constructor(props: any) {
-    super(props)
-
-    this.initRenderer()
-    this.renderRenderer()
-
-    this.initStage()
-    this.addFilterToStage()
-
-    this.initVisual()
-
-    window.addEventListener('resize', this.resize.bind(this), false)
-    this.resize()
-
-    requestAnimationFrame(this.animate.bind(this))
-  }
-
-  initRenderer() {
-    this.renderer = new PIXI.Renderer({
+  const initRenderer = () => {
+    renderer = new PIXI.Renderer({
       width: document.body.clientWidth,
       height: document.body.clientHeight,
       antialias: true,
@@ -44,15 +25,15 @@ export default class App extends React.Component {
     })
   }
 
-  renderRenderer() {
-    document.body.appendChild(this.renderer.view)
+  const renderRenderer = () => {
+    document.body.appendChild(renderer.view)
   }
 
-  initStage() {
-    this.stage = new PIXI.Container()
+  const initStage = () => {
+    stage = new PIXI.Container()
   }
 
-  addFilterToStage() {
+  const addFilterToStage = () => {
     const blurFilter = new PIXI.filters.BlurFilter()
     blurFilter.blur = 10
     blurFilter.autoFit = true
@@ -84,38 +65,43 @@ export default class App extends React.Component {
     }
 
     const thresholdFilter = new PIXI.Filter(undefined, fragSource, uniformsData)
-    this.stage.filters = [blurFilter, thresholdFilter]
+    stage.filters = [blurFilter, thresholdFilter]
 
-    this.stage.filterArea = this.renderer.screen
+    stage.filterArea = renderer.screen
   }
 
-  initVisual() {
-    this.visual = new Visual()
+  const resize = () => {
+    stageWidth = document.body.clientWidth
+    stageHeight = document.body.clientHeight
+
+    renderer.resize(stageWidth, stageHeight)
+
+    show(stageWidth, stageHeight, stage)
   }
 
-  resize() {
-    this.stageWidth = document.body.clientWidth
-    this.stageHeight = document.body.clientHeight
+  const appAnimate = () => {
+    requestAnimationFrame(appAnimate)
 
-    this.renderer.resize(this.stageWidth, this.stageHeight)
+    animate()
 
-    this.visual.show(this.stageWidth, this.stageHeight, this.stage)
+    renderer.render(stage)
   }
 
-  animate() {
-    requestAnimationFrame(this.animate.bind(this))
+  initRenderer()
+  renderRenderer()
 
-    this.visual.animate()
+  initStage()
+  addFilterToStage()
 
-    this.renderer.render(this.stage)
-  }
+  window.addEventListener('resize', resize.bind(this), false)
+  resize()
 
-  render() {
-    return (
-      <>
-        <Header />
-        <Footer />
-      </>
-    )
-  }
+  requestAnimationFrame(appAnimate.bind(this))
+
+  return (
+    <>
+      <Header />
+      <Footer />
+    </>
+  )
 }
