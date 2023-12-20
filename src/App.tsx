@@ -2,8 +2,9 @@ import { useEffect } from 'react'
 
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header/Header'
-import { SnapScrollContainer } from '@/components/SnapScrollContainer/SnapScrollContainer'
 import { PixiManager } from '@/components/PixiManager/PixiManager'
+import { SnapScrollContainer } from '@/components/SnapScrollContainer/SnapScrollContainer'
+
 import styles from './App.module.css'
 
 export const App = () => {
