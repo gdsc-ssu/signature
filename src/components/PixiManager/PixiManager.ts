@@ -14,8 +14,8 @@ export class PixiManager {
   private readonly colorGreen = 100.0 / 255.0
   private readonly colorBlue = 200.0 / 255.0
 
-  constructor() {
-    this.initRenderer()
+  constructor(id: string) {
+    this.initRenderer(id)
     this.initStage()
     this.visual = Visual()
     this.addFilterToStage()
@@ -23,7 +23,7 @@ export class PixiManager {
     this.resize()
   }
 
-  private initRenderer(): void {
+  private initRenderer(id: string): void {
     this.renderer = new PIXI.Renderer({
       width: document.body.clientWidth,
       height: document.body.clientHeight,
@@ -34,7 +34,7 @@ export class PixiManager {
       powerPreference: 'high-performance',
       backgroundColor: this.backgroundColor,
     })
-    document.body.appendChild(this.renderer.view)
+    document.getElementById(id)?.appendChild(this.renderer.view)
   }
 
   private initStage(): void {
