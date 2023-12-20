@@ -1,3 +1,10 @@
+import HandTrack from './component/HandTrack'
+import './style/global.css'
+
 export const App = () => {
-  return <></>
+  return (
+    <div>
+      <HandTrack></HandTrack>
+    </div>
+  )
 }
