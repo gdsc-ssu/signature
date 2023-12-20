@@ -7,6 +7,9 @@ export class PixiManager {
   private stage!: PIXI.Container
   private visual: ReturnType<typeof Visual>
 
+  private readonly backgroundColor = 0xffffff
+  private readonly blur = 10
+  private readonly threshold = 0.5
   private readonly colorRed = 180.0 / 255.0
   private readonly colorGreen = 100.0 / 255.0
   private readonly colorBlue = 200.0 / 255.0
@@ -29,7 +32,7 @@ export class PixiManager {
       resolution: window.devicePixelRatio > 1 ? 2 : 1,
       autoDensity: true,
       powerPreference: 'high-performance',
-      backgroundColor: 0xffffff,
+      backgroundColor: this.backgroundColor,
     })
     document.body.appendChild(this.renderer.view)
   }
@@ -40,7 +43,7 @@ export class PixiManager {
 
   private addFilterToStage(): void {
     const blurFilter = new PIXI.filters.BlurFilter()
-    blurFilter.blur = 10
+    blurFilter.blur = this.blur
     blurFilter.autoFit = true
 
     const fragSource = `
@@ -60,7 +63,7 @@ export class PixiManager {
     `
 
     const uniformsData = {
-      threshold: 0.5,
+      threshold: this.threshold,
       mcolor: [this.colorRed, this.colorGreen, this.colorBlue],
     }
 
