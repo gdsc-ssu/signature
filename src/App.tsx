@@ -1,9 +1,18 @@
+import { useEffect } from 'react'
+
+import { Footer } from '@/components/Footer/Footer'
+import { Header } from '@/components/Header/Header'
+import { PixiManager } from '@/components/PixiManager/PixiManager'
+import { SnapScrollContainer } from '@/components/SnapScrollContainer/SnapScrollContainer'
+
 import styles from './App.module.css'
-import { Footer } from './components/Footer/Footer'
-import { Header } from './components/Header/Header'
-import { SnapScrollContainer } from './components/SnapScrollContainer/SnapScrollContainer'
 
 export const App = () => {
+  useEffect(() => {
+    const pixiManager = new PixiManager()
+    pixiManager.animate()
+  }, [])
+
   return (
     <>
       <Header />

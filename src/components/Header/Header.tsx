@@ -2,7 +2,7 @@ import { useRef } from 'react'
 
 import { FaGithub } from 'react-icons/fa'
 
-import { IconWrapper } from '../IconWrapper/IconWrapper'
+import { IconWrapper } from '@/components/IconWrapper/IconWrapper'
 
 import styles from './Header.module.css'
 
