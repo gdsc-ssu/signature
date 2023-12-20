@@ -9,7 +9,7 @@ export interface Mouse {
   radius: number
 }
 
-export const Visual = () => {
+export const Visual = (text: string) => {
   const { setText } = Text()
   const texture = PIXI.Texture.from('particle.png')
   const mouse = {
@@ -28,7 +28,7 @@ export const Visual = () => {
       stage.removeChild(container)
     }
 
-    pos = setText('a', 2, stageWidth, stageHeight)
+    pos = setText(text, 2, stageWidth, stageHeight)
 
     container = new PIXI.ParticleContainer(pos.length, {
       vertices: false,
