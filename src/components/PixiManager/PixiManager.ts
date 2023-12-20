@@ -14,10 +14,10 @@ export class PixiManager {
   private readonly colorGreen = 100.0 / 255.0
   private readonly colorBlue = 200.0 / 255.0
 
-  constructor(id: string) {
+  constructor(id: string, text: string) {
     this.initRenderer(id)
     this.initStage()
-    this.visual = Visual()
+    this.visual = Visual(text)
     this.addFilterToStage()
     window.addEventListener('resize', this.resize.bind(this), false)
     this.resize()

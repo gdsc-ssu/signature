@@ -10,7 +10,7 @@ export const App = () => {
     <>
       <Header />
       <main className={styles.main}>
-        <SnapScrollContainer items={[<Item id="item1" />]} />
+        <SnapScrollContainer items={[<Item id="item1" text="Signature" />]} />
       </main>
       <Footer />
     </>
