@@ -1,12 +1,13 @@
-import { useAnimationFrame } from '../hooks/common/useAnimationFrame'
-import { HandPoint } from '@/model/handpoints'
-import { setupDetector } from '../util/tfModel'
-import { setupVideoCam } from '../util/video'
 import { useEffect, useRef } from 'react'
-import { locMapper } from '../util/mapper'
-import useWindowDimensions from '../hooks/common/getWindowDimensions'
 
-const HandTrack = () => {
+import useWindowDimensions from '@/hooks/common/getWindowDimensions'
+import { useAnimationFrame } from '@/hooks/common/useAnimationFrame'
+import { HandPoint } from '@/model/handpoints'
+import { locMapper } from '@/util/mapper'
+import { setupDetector } from '@/util/tfModel'
+import { setupVideoCam } from '@/util/video'
+
+export const HandTrack = () => {
   const { height, width } = useWindowDimensions()
   const $video = useRef<HTMLVideoElement>()
   const tracker = useRef<any>()
@@ -57,5 +58,3 @@ const HandTrack = () => {
     </div>
   )
 }
-
-export default HandTrack

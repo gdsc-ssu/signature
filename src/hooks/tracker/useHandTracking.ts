@@ -1,8 +1,9 @@
 import { useRef } from 'react'
-import { useAnimationFrame } from '../common/useAnimationFrame'
-import { setupVideoCam } from '../../util/video'
-import { setupDetector } from '../../util/tfModel'
+
+import { useAnimationFrame } from '@/common/useAnimationFrame'
 import { HandPoint } from '@/model/handpoints'
+import { setupDetector } from '@/util/tfModel'
+import { setupVideoCam } from '@/util/video'
 
 const appendHiddenVideoDomToBody = () => {
   const videoDom = document.createElement('video')
