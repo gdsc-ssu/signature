@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@mediapipe/hands": "^0.4.1675469240",
+    "@nindaff/leonsans": "^1.0.0",
     "@tensorflow-models/hand-pose-detection": "^2.0.1",
     "@tensorflow/tfjs-backend-webgl": "^4.15.0",
     "@tensorflow/tfjs-converter": "^4.15.0",

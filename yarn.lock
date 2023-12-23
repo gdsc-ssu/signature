@@ -411,6 +411,11 @@
   resolved "https://registry.yarnpkg.com/@mediapipe/hands/-/hands-0.4.1675469240.tgz#f032b2f5deff5a69430693f94be45dd9854e803f"
   integrity sha512-GxoZvL1mmhJxFxjuyj7vnC++JIuInGznHBin5c7ZSq/RbcnGyfEcJrkM/bMu5K1Mz/2Ko+vEX6/+wewmEHPrHg==
 
+"@nindaff/leonsans@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@nindaff/leonsans/-/leonsans-1.0.0.tgz#087cc48a04507cfbb42b5112748db080d5bb3b05"
+  integrity sha512-ilfyNoj4dJYfa/bqbLScsk/X+/SllgF9wxE/OKMAsLX4bmSQBTWGgv8d4htYXBDxu8qnUjAlNbsctVDTN2ZvAQ==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
