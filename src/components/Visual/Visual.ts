@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js'
 
 import { Particle } from '@/components/Particle/Particle'
 import { ParticlePos, Text } from '@/components/Text/Text'
+import { HandMoveEvent } from '@/model/event'
 
 export interface Mouse {
   x: number
@@ -70,12 +71,19 @@ export const Visual = (text: string) => {
     }
   }
 
-  const onMove = (e: PointerEvent) => {
-    mouse.x = e.clientX
-    mouse.y = e.clientY
+  // const onMove = (e: PointerEvent) => {
+  //   mouse.x = e.clientX
+  //   mouse.y = e.clientY
+  // }
+
+  const onHandMove = (e: HandMoveEvent) => {
+    const { x, y } = e.detail
+    mouse.x = x
+    mouse.y = y
   }
 
-  document.addEventListener('pointermove', onMove.bind(this), false)
+  // document.addEventListener('pointermove', onMove.bind(this), false)
+  document.addEventListener('handmove', onHandMove.bind(this))
 
   return {
     show,

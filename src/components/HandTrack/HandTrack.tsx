@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { useWindowDimensions } from '@/hooks/common/getWindowDimensions'
 import { useAnimationFrame } from '@/hooks/common/useAnimationFrame'
@@ -7,7 +7,12 @@ import { locMapper } from '@/util/mapper'
 import { setupDetector } from '@/util/tfModel'
 import { setupVideoCam } from '@/util/video'
 
+import { Cursor } from '../Cursor/Cursor'
+
 export const HandTrack = () => {
+  const [handX, setHandX] = useState<number>(0)
+  const [handY, setHandY] = useState<number>(0)
+
   const { height, width } = useWindowDimensions()
   const $video = useRef<HTMLVideoElement>()
   const tracker = useRef<any>()
@@ -26,6 +31,18 @@ export const HandTrack = () => {
     })()
   }, [])
 
+  useEffect(() => {
+    const handMoveEvent = new CustomEvent('handmove', {
+      detail: {
+        x: handX,
+        y: handY,
+      },
+      bubbles: true,
+      cancelable: true,
+    })
+    document.dispatchEvent(handMoveEvent)
+  }, [handX, handY])
+
   useAnimationFrame(async () => {
     if (!tracker.current) return
     const hands = (await tracker.current.estimateHands($video.current, {
@@ -35,11 +52,13 @@ export const HandTrack = () => {
     const keyPointers = hands.map((hand) => hand.keypoints)
     if (keyPointers.length !== 0) {
       const indexFingerLoc = keyPointers[0].filter((kp) => kp.name === 'index_finger_tip')[0]
-      console.log(
-        'indexFingerLoc',
-        locMapper(640, width, indexFingerLoc.x),
-        locMapper(480, height, indexFingerLoc.y)
-      )
+      const mappedX = locMapper(640, width, indexFingerLoc.x)
+      const mappedY = locMapper(480, height, indexFingerLoc.y)
+
+      setHandX(mappedX)
+      setHandY(mappedY)
+
+      console.log('indexFingerLoc', mappedX, mappedY)
     }
   }, true)
 
@@ -56,6 +75,7 @@ export const HandTrack = () => {
         id="video"
         playsInline
       />
+      <Cursor x={handX} y={handY} />
     </div>
   )
 }
