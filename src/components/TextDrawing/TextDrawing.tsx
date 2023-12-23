@@ -1,6 +1,7 @@
 import LeonSans from '@nindaff/leonsans'
+import { TweenMax } from 'gsap'
 
-let leon: any, canvas, ctx: any
+let leon: any, canvas, ctx: CanvasRenderingContext2D
 
 const sw = window.innerWidth
 const sh = window.innerHeight
@@ -15,7 +16,7 @@ export function init(id: string) {
   canvas.style.height = '100%'
 
   document.getElementById(id)?.appendChild(canvas)
-  ctx = canvas.getContext('2d')
+  ctx = canvas.getContext('2d') as CanvasRenderingContext2D
 
   canvas.width = sw * pixelRatio
   canvas.height = sh * pixelRatio
@@ -31,6 +32,23 @@ export function init(id: string) {
   })
 
   requestAnimationFrame(animate)
+
+  let i
+  const total = leon.drawing.length
+  for (i = 0; i < total; i++) {
+    TweenMax.fromTo(
+      leon.drawing[i],
+      1.6,
+      {
+        value: 0,
+      },
+      {
+        delay: i * 0.2,
+        value: 1,
+        ease: Power4.easeOut,
+      }
+    )
+  }
 }
 
 function animate() {
