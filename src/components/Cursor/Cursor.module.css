@@ -5,10 +5,10 @@
   transform: translate3d(-50%, -50%, 0);
   transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1);
 
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
 
-  background-image: url('/public/finger.svg');
+  background-image: url('https://a.slack-edge.com/production-standard-emoji-assets/14.0/apple-large/1f44b-1f3fb@2x.png');
   background-repeat: no-repeat;
   background-position: center left;
   background-size: contain;
