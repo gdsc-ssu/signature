@@ -27,6 +27,7 @@ export const HandTrack = () => {
   }, [])
 
   useAnimationFrame(async () => {
+    if (!tracker.current) return
     const hands = (await tracker.current.estimateHands($video.current, {
       flipHorizontal: true,
     })) as Array<HandPoint>
