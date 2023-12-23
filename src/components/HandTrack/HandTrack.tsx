@@ -56,7 +56,7 @@ export const HandTrack = () => {
 
       setHandPosition({ x, y })
 
-      console.log('indexFingerLoc', x, y)
+      // console.log('indexFingerLoc', x, y)
     }
   }, true)
 
