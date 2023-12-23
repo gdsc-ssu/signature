@@ -1,5 +1,5 @@
-import { SnapScrollContainer } from '../SnapScrollContainer/SnapScrollContainer'
-import { SnapScrollItem } from '../SnapScrollItem/SnapScrollItem'
+import { SnapScrollContainer } from '@/components/SnapScrollContainer/SnapScrollContainer'
+import { SnapScrollItem } from '@/components/SnapScrollItem/SnapScrollItem'
 
 import styles from './Main.module.css'
 
