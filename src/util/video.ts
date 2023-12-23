@@ -1,4 +1,4 @@
-const setupVideoCam = async () => {
+export const setupVideoCam = async () => {
   const video = document.getElementById('video') as HTMLVideoElement
   if (!video) {
     throw Error('Should Contain Video HTML Element(#video) in Your App')
@@ -18,5 +18,3 @@ const setupVideoCam = async () => {
 
   return video
 }
-
-export { setupVideoCam }

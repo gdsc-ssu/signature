@@ -7,11 +7,9 @@ interface Params {
   solutionPath: string
 }
 
-const setupDetector = async (detectOptions: Params) => {
+export const setupDetector = async (detectOptions: Params) => {
   const model = handPoseDetection.SupportedModels.MediaPipeHands
   const detector = await handPoseDetection.createDetector(model, detectOptions)
 
   return detector
 }
-
-export { setupDetector }

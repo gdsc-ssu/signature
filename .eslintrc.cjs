@@ -13,6 +13,7 @@ module.exports = {
   plugins: ['react-refresh', 'react', 'prettier'],
   rules: {
     '@typescript-eslint/no-explicit-any': 'off',
+    'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
     semi: ['error', 'never'],

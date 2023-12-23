@@ -1,11 +1,9 @@
 import { useRef } from 'react'
 
-import { useAnimationFrame } from '@/common/useAnimationFrame'
-import { HandPoint } from '@/model/handpoints'
 import { setupDetector } from '@/util/tfModel'
 import { setupVideoCam } from '@/util/video'
 
-const appendHiddenVideoDomToBody = () => {
+export const appendHiddenVideoDomToBody = () => {
   const videoDom = document.createElement('video')
   videoDom.setAttribute(
     'style',
@@ -17,7 +15,7 @@ const appendHiddenVideoDomToBody = () => {
   document.body.appendChild(videoDom)
 }
 
-const useHandTracking = async () => {
+export const useHandTracking = async () => {
   const $video = useRef<HTMLVideoElement>()
   const tracker = useRef<any>()
 
@@ -38,18 +36,4 @@ const useHandTracking = async () => {
     maxHands: 2,
     solutionPath: 'https://cdn.jsdelivr.net/npm/@mediapipe/hands/',
   })
-
-  // useAnimationFrame(async () => {
-  //   const hands = (await tracker.current.estimateHands($video.current, {
-  //     flipHorizontal: true,
-  //   })) as Array<HandPoint>
-
-  //   const keyPointers = hands.map((hand) => hand.keypoints)
-  //   if (keyPointers.length !== 0) {
-  //     const indexFingerLoc = keyPointers[0].filter((kp) => kp.name === 'index_finger_tip')[0]
-  //     console.log('indexFingerLoc', indexFingerLoc.x, indexFingerLoc.y)
-  //   }
-  // })
 }
-
-export { useHandTracking }

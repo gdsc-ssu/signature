@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-import useWindowDimensions from '@/hooks/common/getWindowDimensions'
+import { useWindowDimensions } from '@/hooks/common/getWindowDimensions'
 import { useAnimationFrame } from '@/hooks/common/useAnimationFrame'
 import { HandPoint } from '@/model/handpoints'
 import { locMapper } from '@/util/mapper'

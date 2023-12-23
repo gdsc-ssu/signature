@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 
 import { PixiManager } from '@/components/PixiManager/PixiManager'
 
-export const Item = ({ id, text }: { id: string; text: string }) => {
+export const SnapScrollItem = ({ id, text }: { id: string; text: string }) => {
   const isRender = useRef<boolean>(false)
 
   useEffect(() => {
