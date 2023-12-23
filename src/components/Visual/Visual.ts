@@ -16,7 +16,7 @@ export const Visual = (text: string) => {
   const mouse = {
     x: 0,
     y: 0,
-    radius: 50,
+    radius: 40,
   }
 
   let container!: PIXI.ParticleContainer

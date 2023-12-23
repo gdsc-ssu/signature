@@ -10,7 +10,9 @@ export const Cursor = ({ pos }: CursorProps) => {
   return (
     <div
       className={styles.cursor}
-      style={{ transform: `translate3d(calc(-50% + ${pos.x}px), calc(-50% + ${pos.y}px), 0)` }}
+      style={{
+        transform: `translate3d(calc(-50% + ${pos.x}px), calc(-50% + ${pos.y}px), 0)`,
+      }}
     ></div>
   )
 }
