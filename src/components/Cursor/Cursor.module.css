@@ -1,0 +1,14 @@
+.cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate3d(-50%, -50%, 0);
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1);
+
+  width: 16px;
+  height: 16px;
+
+  background-color: red;
+
+  border-radius: 50%;
+}
