@@ -51,15 +51,19 @@ export class PixiManager {
       varying vec2 vTextureCoord;
       uniform sampler2D uSampler;
       uniform float threshold;
-      uniform vec3 mcolor;
+      
       void main(void) {
-        vec4 color = texture2D(uSampler, vTextureCoord);
-        if (color.a > threshold) {
-          gl_FragColor = vec4(mcolor, 1.0);
+        vec4 texColor = texture2D(uSampler, vTextureCoord);
+        if (texColor.a > threshold) {
+          // 수직 그라데이션 적용: 위쪽은 하얀색, 아래쪽은 검은색
+          float gradient = 1.0 - vTextureCoord.y; // y 좌표에 따라 그라데이션 값 설정
+      
+          vec3 color = vec3(gradient); // 하얀색에서 검은색으로 변화
+          gl_FragColor = vec4(color, 1.0);
         } else {
           gl_FragColor = vec4(vec3(0.0), 0.0);
         }
-      }
+      }    
     `
 
     const uniformsData = {
