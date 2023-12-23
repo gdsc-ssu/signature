@@ -77,7 +77,9 @@ export const Visual = (text: string) => {
   // }
 
   const onHandMove = (e: HandMoveEvent) => {
-    const { x, y } = e.detail
+    const {
+      pos: { x, y },
+    } = e.detail
     mouse.x = x
     mouse.y = y
   }

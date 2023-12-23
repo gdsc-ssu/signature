@@ -1,4 +1,6 @@
-type HandMoveEvent = CustomEvent<{ x: number; y: number }>
+import { Vector2 } from './vector'
+
+type HandMoveEvent = CustomEvent<{ pos: Vector2 }>
 
 interface CustomEventMap {
   handmove: HandMoveEvent

@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useWindowDimensions } from '@/hooks/common/getWindowDimensions'
 import { useAnimationFrame } from '@/hooks/common/useAnimationFrame'
 import { HandPoint } from '@/model/handpoints'
+import { Vector2 } from '@/model/vector'
 import { locMapper } from '@/util/mapper'
 import { setupDetector } from '@/util/tfModel'
 import { setupVideoCam } from '@/util/video'
@@ -10,8 +11,7 @@ import { setupVideoCam } from '@/util/video'
 import { Cursor } from '../Cursor/Cursor'
 
 export const HandTrack = () => {
-  const [handX, setHandX] = useState<number>(0)
-  const [handY, setHandY] = useState<number>(0)
+  const [handPosition, setHandPosition] = useState<Vector2>({ x: 0, y: 0 })
 
   const { height, width } = useWindowDimensions()
   const $video = useRef<HTMLVideoElement>()
@@ -34,14 +34,13 @@ export const HandTrack = () => {
   useEffect(() => {
     const handMoveEvent = new CustomEvent('handmove', {
       detail: {
-        x: handX,
-        y: handY,
+        pos: { ...handPosition },
       },
       bubbles: true,
       cancelable: true,
     })
     document.dispatchEvent(handMoveEvent)
-  }, [handX, handY])
+  }, [handPosition])
 
   useAnimationFrame(async () => {
     if (!tracker.current) return
@@ -52,13 +51,12 @@ export const HandTrack = () => {
     const keyPointers = hands.map((hand) => hand.keypoints)
     if (keyPointers.length !== 0) {
       const indexFingerLoc = keyPointers[0].filter((kp) => kp.name === 'index_finger_tip')[0]
-      const mappedX = locMapper(640, width, indexFingerLoc.x)
-      const mappedY = locMapper(480, height, indexFingerLoc.y)
+      const x = locMapper(640, width, indexFingerLoc.x)
+      const y = locMapper(480, height, indexFingerLoc.y)
 
-      setHandX(mappedX)
-      setHandY(mappedY)
+      setHandPosition({ x, y })
 
-      console.log('indexFingerLoc', mappedX, mappedY)
+      console.log('indexFingerLoc', x, y)
     }
   }, true)
 
@@ -75,7 +73,7 @@ export const HandTrack = () => {
         id="video"
         playsInline
       />
-      <Cursor x={handX} y={handY} />
+      <Cursor pos={handPosition} />
     </div>
   )
 }
