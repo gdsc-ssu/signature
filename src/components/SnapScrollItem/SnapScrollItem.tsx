@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react'
-import { PixiManager } from '../PixiManager/PixiManager'
 
-const Item = ({ id, text }: { id: string; text: string }) => {
+import { PixiManager } from '@/components/PixiManager/PixiManager'
+
+export const SnapScrollItem = ({ id, text }: { id: string; text: string }) => {
   const isRender = useRef<boolean>(false)
 
   useEffect(() => {
@@ -13,5 +14,3 @@ const Item = ({ id, text }: { id: string; text: string }) => {
 
   return <div id={id}></div>
 }
-
-export default Item
