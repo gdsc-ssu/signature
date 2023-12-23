@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
+import { Cursor } from '@/components/Cursor/Cursor'
 import { useWindowDimensions } from '@/hooks/common/getWindowDimensions'
 import { useAnimationFrame } from '@/hooks/common/useAnimationFrame'
 import { HandPoint } from '@/model/handpoints'
@@ -7,8 +8,6 @@ import { Vector2 } from '@/model/vector'
 import { locMapper } from '@/util/mapper'
 import { setupDetector } from '@/util/tfModel'
 import { setupVideoCam } from '@/util/video'
-
-import { Cursor } from '../Cursor/Cursor'
 
 export const HandTrack = () => {
   const [handPosition, setHandPosition] = useState<Vector2>({ x: 0, y: 0 })
