@@ -411,6 +411,11 @@
   resolved "https://registry.yarnpkg.com/@mediapipe/hands/-/hands-0.4.1675469240.tgz#f032b2f5deff5a69430693f94be45dd9854e803f"
   integrity sha512-GxoZvL1mmhJxFxjuyj7vnC++JIuInGznHBin5c7ZSq/RbcnGyfEcJrkM/bMu5K1Mz/2Ko+vEX6/+wewmEHPrHg==
 
+"@nindaff/leonsans@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@nindaff/leonsans/-/leonsans-1.0.0.tgz#087cc48a04507cfbb42b5112748db080d5bb3b05"
+  integrity sha512-ilfyNoj4dJYfa/bqbLScsk/X+/SllgF9wxE/OKMAsLX4bmSQBTWGgv8d4htYXBDxu8qnUjAlNbsctVDTN2ZvAQ==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -2016,6 +2021,11 @@ graphemer@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/graphemer/-/graphemer-1.4.0.tgz#fb2f1d55e0e3a1849aeffc90c4fa0dd53a0e66c6"
   integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
+
+gsap@^3.12.4:
+  version "3.12.4"
+  resolved "https://registry.yarnpkg.com/gsap/-/gsap-3.12.4.tgz#b9383fe16bb14968e2c7db2a7c0e308edf551e7b"
+  integrity sha512-1ByAq8dD0W4aBZ/JArgaQvc0gyUfkGkP8mgAQa0qZGdpOKlSOhOf+WNXjoLimKaKG3Z4Iu6DKZtnyszqQeyqWQ==
 
 has-bigints@^1.0.1, has-bigints@^1.0.2:
   version "1.0.2"
