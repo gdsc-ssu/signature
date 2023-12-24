@@ -7,7 +7,7 @@ const sw = window.innerWidth
 const sh = window.innerHeight
 const pixelRatio = 2
 
-export function init(id: string) {
+export const Init = (id: string) => {
   canvas = document.createElement('canvas')
 
   canvas.style.top = '0'
@@ -24,6 +24,24 @@ export function init(id: string) {
   canvas.style.height = sh + 'px'
   ctx.scale(pixelRatio, pixelRatio)
 
+  requestAnimationFrame(animate)
+
+  TextDrawing()
+}
+
+const animate = () => {
+  requestAnimationFrame(animate)
+
+  ctx.clearRect(0, 0, sw, sh)
+
+  const x = (sw - leon.rect.w) / 2
+  const y = (sh - leon.rect.h) / 2
+  leon.position(x, y)
+
+  leon.draw(ctx)
+}
+
+export const TextDrawing = () => {
   leon = new LeonSans({
     text: 'signature',
     color: ['#000000'],
@@ -31,11 +49,8 @@ export function init(id: string) {
     weight: 200,
   })
 
-  requestAnimationFrame(animate)
-
-  let i
   const total = leon.drawing.length
-  for (i = 0; i < total; i++) {
+  for (let i = 0; i < total; i++) {
     TweenMax.fromTo(
       leon.drawing[i],
       1.6,
@@ -49,16 +64,4 @@ export function init(id: string) {
       }
     )
   }
-}
-
-function animate() {
-  requestAnimationFrame(animate)
-
-  ctx.clearRect(0, 0, sw, sh)
-
-  const x = (sw - leon.rect.w) / 2
-  const y = (sh - leon.rect.h) / 2
-  leon.position(x, y)
-
-  leon.draw(ctx)
 }
