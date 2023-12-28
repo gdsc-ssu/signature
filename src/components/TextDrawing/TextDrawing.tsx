@@ -5,7 +5,6 @@ let leon: any, canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D
 
 let sw = window.innerWidth
 let sh = window.innerHeight
-const pixelRatio = 2
 
 export const Init = (id: string) => {
   canvas = document.createElement('canvas')
@@ -20,6 +19,7 @@ export const Init = (id: string) => {
 }
 
 const onResize = () => {
+  const pixelRatio = window.devicePixelRatio > 1 ? 2 : 1
   sw = window.innerWidth
   sh = window.innerHeight
   canvas.width = sw * pixelRatio
